@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    /* ✅ Modern Node-compatible ESM settings */
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
+    /* ✅ Basic TS essentials */
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM"],
+
+    /* ✅ Cypress + Cucumber setup */
+    "types": ["cypress"],
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    /* ✅ Safety and performance */
+    "skipLibCheck": true,
+    "strict": true,
+    "isolatedModules": false,
+
+    /* ✅ Base config for absolute paths (optional) */
+    "baseUrl": "https://www.bbc.com/sport"
+  },
+
+  "include": [
+    "cypress/**/*.ts",
+    "cypress.config.ts"
+  ]
+}

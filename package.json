@@ -1,0 +1,30 @@
+{
+  "name": "bbc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+  "cypress:run": "cypress run",
+  "merge-reports": "npx mochawesome-merge cypress/reports/*.json > cypress/reports/output.json",
+  "generate-report": "npx marge cypress/reports/output.json --reportDir cypress/reports/html",
+  "test:report": "npm run cypress:run && npm run generate-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^23.2.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.6",
+    "@cypress/browserify-preprocessor": "^3.0.2",
+    "@cypress/webpack-preprocessor": "^7.0.1",
+    "cypress": "^15.4.0",
+    "cypress-fill-command": "^1.0.2",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^4.4.1",
+    "mochawesome-report-generator": "^6.3.0",
+    "typescript": "^5.9.3"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": "cypress/e2e/bbcEditor/steps.spec.cy.ts"
+  }
+}

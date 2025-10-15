@@ -1,0 +1,5 @@
+{
+    "searchLink": "a[href='https://www.bbc.com/search?d=SPORT_GNL']",
+    "searchInput": "#main-content > div > div > div:nth-of-type(1) > input",
+    "searchButton": "#main-content > div > div > div> button[data-testid='search-input-search-button']"
+}
