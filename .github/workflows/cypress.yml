@@ -28,27 +28,4 @@ jobs:
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
-        with:
-          browser: chrome
-          config-file: cypress.config.ts
-          headed: false
-          record: false
-        env:
-          CYPRESS_VIDEO: false
-          CYPRESS_BASE_URL: https://www.bbc.com/sport
-
-      - name: Upload screenshots/videos on failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-artifacts
-          path: |
-            cypress/screenshots
-            cypress/videos
-      - name: Generate Test Report
-        run: npm run test:report
-      - name: Upload Test Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-test-report 
           
