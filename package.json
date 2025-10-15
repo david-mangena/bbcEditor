@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-  "cypress:run": "cypress run",
-  "merge-reports": "npx mochawesome-merge cypress/reports/*.json > cypress/reports/output.json",
-  "generate-report": "npx marge cypress/reports/output.json --reportDir cypress/reports/html",
-  "test:report": "npm run cypress:run && npm run generate-report"
+    "start": "echo 'No server to start - running Cypress tests only'",
+    "cypress:run": "cypress run",
+    "merge-reports": "npx mochawesome-merge cypress/reports/*.json > cypress/reports/output.json",
+    "generate-report": "npx marge cypress/reports/output.json --reportDir cypress/reports/html",
+    "test:report": "npm run cypress:run && npm run generate-report"
   },
   "keywords": [],
   "author": "",

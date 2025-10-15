@@ -1,82 +1,43 @@
-name: 🧪 BBC E2E Tests
+name: 🧩 Run Cypress Tests
 
 on:
   push:
-    branches: [ main, master, develop ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, master, develop ]
+    branches: [ main ]
 
 jobs:
   cypress-run:
-    name: 🧩 Run Cypress Tests
     runs-on: ubuntu-latest
 
     strategy:
-      fail-fast: false
       matrix:
-        node-version: [18.x, 20.x] # Test against multiple Node versions for compatibility
+        node-version: [20] # 🔥 Node 20 instead of 18
 
     steps:
-      # -----------------------------
-      # 1️⃣ Checkout code
-      # -----------------------------
-      - name: 🛎 Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      # -----------------------------
-      # 2️⃣ Set up Node.js
-      # -----------------------------
-      - name: 🧰 Setup Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
 
-      # -----------------------------
-      # 3️⃣ Install dependencies
-      # -----------------------------
-      - name: 📦 Install dependencies
+      - name: Install dependencies
         run: npm ci
 
-      # -----------------------------
-      # 4️⃣ Run Cypress tests (headless)
-      # -----------------------------
-      - name: 🧪 Run Cypress (Chrome headless)
+      - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
+          config-file: cypress.config.ts
           headed: false
           record: false
-          config-file: cypress.config.ts
-          start: npm start
         env:
           CYPRESS_VIDEO: false
           CYPRESS_BASE_URL: https://www.bbc.com/sport
-          # Add any secrets here if authentication is required
-          # CYPRESS_USERNAME: ${{ secrets.CYPRESS_USERNAME }}
-          # CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
 
-      # -----------------------------
-      # 5️⃣ Generate Mochawesome Report
-      # -----------------------------
-      - name: 📊 Merge Mochawesome reports
-        run: |
-          npx mochawesome-merge cypress/reports/*.json > mochawesome.json
-          npx marge mochawesome.json --reportDir cypress/reports/html --inline
-
-      # -----------------------------
-      # 6️⃣ Upload Mochawesome report as artifact
-      # -----------------------------
-      - name: 📤 Upload test report
-        uses: actions/upload-artifact@v4
-        with:
-          name: mochawesome-report
-          path: cypress/reports/html
-
-      # -----------------------------
-      # 7️⃣ (Optional) Upload Cypress screenshots/videos on failure
-      # -----------------------------
-      - name: 📸 Upload screenshots and videos on failure
+      - name: Upload screenshots/videos on failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
@@ -84,3 +45,10 @@ jobs:
           path: |
             cypress/screenshots
             cypress/videos
+      - name: Generate Test Report
+        run: npm run test:report
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-test-report 
+          
