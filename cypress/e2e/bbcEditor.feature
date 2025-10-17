@@ -9,7 +9,7 @@ Feature: Validation In A Table Of Results
     Scenario: Scenario Outline name: Validation In A Table Of Results
     And I navigate to the "Formula 1" section
     When I click on "Results" and selecet the year "2023"
-    Then I should see a table with the top "3" finishers of the Las Vegas Grand Prix
+    Then I should see a table with the top "3" finishers of the "Las Vegas Grand Prix"
     And the table should contain the following data:
         | Position | Driver          | Team    |
         | 1        | Max Verstappen  | Red Bull|
