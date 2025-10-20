@@ -6,8 +6,6 @@ This framework enables maintainable, readable, and CI/CD-ready automation — in
 
 📋 Table of Contents
 
-✨ Features
-
 📁 Project Structure
 
 ⚙️ Setup & Installation
